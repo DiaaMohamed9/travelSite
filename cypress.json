@@ -1,0 +1,35 @@
+{
+   "defaultCommandTimeout": 10000,
+   "testFiles": [
+      "**/*.js"
+   ],
+
+   "reporterOptions": {
+      "reportDir": "cypress/reports",
+      "charts": true,
+      "reportPageTitle": "My Test Suite",
+      "embeddedScreenshots": true,
+      "inlineAssets": true
+   },
+
+   "screenshotOnRunFailure": true,
+   "screenshotsFolder": "cypress/reports/assets",
+   "viewportHeight": 960,
+   "viewportWidth": 1536,
+   "video": false,
+   "ignoreTestFiles": [
+      "**/tests/accessControl/**",
+      "**/pages/**",
+      "**/commonTestCases/**",
+      "**/API/**",
+      "**/UI/**",
+      "**/MongoDB/**",
+      "**/Blitz.test.js",
+      "**/functions.js"
+   ],
+   "requestTimeout": 10000,
+   "retries": {
+      "runMode": 0,
+      "openMode": 0
+   }
+}

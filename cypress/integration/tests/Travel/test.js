@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 var apiResponse
 
-describe('example to-do app', () => {
+describe('test travle site', () => {
   before(() => {
 cy.request({
 method:"GET",
@@ -39,3 +39,12 @@ followRedirect: false,
    })
   
 })
+
+
+/*
+
+{
+"places":[{"placeId":"23","placeName":"dsd"
+}]
+}
+*/ 

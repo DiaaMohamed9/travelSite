@@ -1,0 +1,38 @@
+module.exports = {
+   SearchPage: {
+      counteryListElement:"//*[@id='countrySelect']",
+      counteryDropListElements:"//*[@id='countrySelect']//ul//li",
+      counteryDropListElement:"//*[@id='countrySelect']//li//text()[normalize-space() = 'COUNTERY']/parent::*",
+      searchKeyWordElment:"//input[@id='searchInput']",
+      startDateElement:"//*[@id='startDate']/input",
+      endDateElement:"//*[@id='endDate']/input",
+      searchElement:"//button[text()='Search' and @type='submit']",
+      RecordsPerPage:"//label[contains(text(),'Records per page')]//select",
+      RecordsPerPageOptions:"//label[contains(text(),'Records per page')]//select/option",
+      SortByElment:"//label[contains(text(),'Sort By')]/following::select[1]",
+      SortByOptions:"//label[contains(text(),'Sort By')]/following::select[1]/option",
+      AscendingDescendingSelector:"//*[contains(@data-icon,'sort-alpha')]",      
+      EvnetsCardsElments:"//a[@class='event-link']",
+      EvnetsCardsElment:"(//a[@class='event-link'])[ROW]",
+      EvnetsCardsDatesElments:"(//a[@class='event-link']//span)[ROW]",
+      EvnetsCardsTitlesElments:"(//a[@class='event-link']//h4)[ROW]",
+      NextPageElment:"//button[contains(text(),'Next')]",
+      PreviousPageElment:"//button[contains(text(),'Previous')]",
+      FirstPageElment:"//button[contains(text(),'First')]",
+      LastPageElment:"//button[contains(text(),'Last')]",
+      PageNumberElment:"//button[text()='NUMBER')]",
+      ActivePageElment:"//button[@disabled and @class='active']",
+      EvnetCardElmentById:"//a[@class='event-link' and contains(@href,'ID')]",
+      MainScreenEventTitle:"//*[@class='event-container']//h3",
+      MainScreenEventVenue:"//*[@class='event-container']//*[contains(text(),'Venue')]/parent::p[1]/text()[.]",
+      MainScreenEventInformation:"//*[@class='event-container']//*[contains(text(),'Information')]/parent::p[1]/text()[.]",
+      MainScreenEventDate:"//*[@class='event-container']//*[contains(text(),'Date')]/parent::p[1]/text()[.]",
+      MainScreenEventTime:"//*[@class='event-container']//*[contains(text(),'Time')]/parent::p[1]/text()[.]",
+      MainScreenEventSegment:"//*[@class='event-container']//*[contains(text(),'Segment')]/parent::p[1]/text()[.]",
+      MainScreenEventGenre:"//*[@class='event-container']//*[contains(text(),'Genre')]/parent::p[1]/text()[.]",
+      MainScreenEventPrice:"//*[@class='event-container']//*[contains(text(),'Price')]/parent::p[1]/text()[.]",
+
+      
+      
+   },
+}

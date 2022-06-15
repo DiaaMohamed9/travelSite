@@ -1,45 +1,83 @@
 /// <reference types="cypress" />
-var apiResponse
+import Countries from "../../API/Counteries";
+import SearchPage from "../../pages/saerchPage/searchPage";
+var apiResponse;
+const countries = new Countries();
+const searchPage = new SearchPage();
+var expectedCountryList = [];
+const happyScenario = true;
+const startDateEmpty = true;
+const endDateEmpty = true;
+var selectedCountery;
+const testScinrios = [
+  {
+    startDate: "06/15/2022",
+    endDate: "06/07/2022",
+    excute: happyScenario,
+    name: "happyScenario",
+  },
+  {
+    startDate: "",
+    endDate: "06/07/2022",
+    excute: startDateEmpty,
+    name: "startDateEmpty",
+  },
+  {
+    startDate: "06/15/2022",
+    endDate: "",
+    excute: endDateEmpty,
+    name: "endDateEmpty",
+  },
+];
 
-describe('test travle site', () => {
-  before(() => {
-cy.request({
-method:"GET",
-url:"https://run.mocky.io/v3/941a253b-f9ae-4c43-9969-4d513a84ba2f",
-followRedirect: false,
-}).then((response)=>{
-  expect(response.status).eq(200)
-  apiResponse=response.body.teams
-})
-  })
+const testData = testScinrios.filter(function (Scinrio) {
+  return Scinrio.excute === true;
+});
 
-  it('one team each from these countries England,Germany, Italy, and Spain. ', () => {
-    var counteriesTeams={"England":0,"Germany":0,"Italy":0,"Spain":0}
-    Promise.all(apiResponse.map((team)=>{
-      if(team.country.name in   counteriesTeams ) 
-      counteriesTeams[team.country.name]+=1
-     })) .then(()=>{
-      Object.keys(counteriesTeams).map((countery)=>{
-        expect(counteriesTeams[countery]).eq(1)
-      })
-     })
-  })
+testData.forEach((TD) => {
+  describe(`test travle site ${TD.name}`, () => {
+    before(() => {
+      cy.visit("https://luminous-meringue-661120.netlify.app/");
+      countries.getCountiresList().then((data) => {
+        expectedCountryList = data;
+        selectedCountery = data[0];
+      });
+    });
 
-  it('Each team is supposed to have a minimum of 24 members in their squad.', () => {
-   apiResponse.map((team)=>{
-     expect(team.squad.length).to.be.not.lessThan(24,` eaxh team has 24 ${team.name}`)
+    it("check the countries list", () => {
+      searchPage.checkTheRederedCounteryList(expectedCountryList);
+    });
 
-     })
-  })
-  it( 'Each team s squad should have only 1 member each with "COACH" and" ASSISTANT_COACH" roles.', () => {
-    apiResponse.map((team)=>{
-      expect(team.squad.length).to.be.not.lessThan(24,` eaxh team has 24 ${team.name}`)
- 
-      })
-   })
-  
-})
-
+    it("check select country", () => {
+      searchPage.checkClickCounteryFlow(selectedCountery);
+    });
+    it("check Date  Selection", () => {
+      searchPage.chooseDateRange(TD.startDate, TD.endDate);
+    });
+    it("check search  feature", () => {
+      searchPage.clickOnSearch(TD.startDate, TD.endDate, selectedCountery);
+    });
+    it("check pagination  feature", () => {
+      searchPage.checkPagenationFeature();
+    });
+    it("check select  posts count per page  feature", () => {
+      searchPage.checkselectPostsPerPageFeature(TD.startDate, TD.endDate);
+    });
+    it("check sortBY feature", () => {
+      searchPage.checkSortByVlues();
+      searchPage.checkSortByName(TD.startDate, TD.endDate);
+      searchPage.checkSortByDate(TD.startDate, TD.endDate);
+      searchPage.checkSortByName(TD.startDate, TD.endDate, "asc");
+      searchPage.checkSortByDate(TD.startDate, TD.endDate, "asc");
+    });
+    it("check display/choose events feature", () => {
+      searchPage.checkEventDisplayFlow();
+    });
+    it("check Keyword search feature", () => {
+      searchPage.checkSearchByKeywordFlow();
+    });
+  });
+});
 
 /*
 
@@ -47,4 +85,4 @@ followRedirect: false,
 "places":[{"placeId":"23","placeName":"dsd"
 }]
 }
-*/ 
+*/

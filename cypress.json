@@ -3,17 +3,15 @@
    "testFiles": [
       "**/*.js"
    ],
-
+   "reporter": "../node_modules/mochawesome/src/mochawesome.js",
    "reporterOptions": {
-      "reportDir": "cypress/reports",
-      "charts": true,
-      "reportPageTitle": "My Test Suite",
-      "embeddedScreenshots": true,
-      "inlineAssets": true
+     "overwrite": false,
+     "html": false,
+     "json": true
    },
+   "screenshotsFolder": "TestReport/assets",
 
    "screenshotOnRunFailure": true,
-   "screenshotsFolder": "cypress/reports/assets",
    "viewportHeight": 960,
    "viewportWidth": 1536,
    "video": false,
